@@ -1,56 +1,70 @@
-# better-fa Monorepo
+# better-fa
 
-> A collection of open-source TypeScript packages for modern web development
+> TypeScript packages for Persian-first web development on npm.
 
-This is a monorepo containing multiple npm packages maintained by [@hamidrezakz](https://github.com/hamidrezakz).
+`better-fa` is an open-source monorepo focused on practical utilities that developers in the Persian (Farsi) ecosystem need in real projects.
 
-## 📦 Packages
+The goal is simple: provide lightweight, well-typed, production-ready packages for common Persian localization needs such as formatting, normalization, and data consistency.
+
+## Vision
+
+- Build small and focused npm packages for Persian use cases.
+- Keep APIs simple, predictable, and framework-agnostic.
+- Prefer native platform features (like `Intl`) whenever possible.
+- Maintain high quality through clear structure, typing, and release workflow.
+
+## Packages
 
 ### [@better-fa/utils](./packages/utils)
 
-Simple Persian (Farsi) date and number formatting helpers using built-in JavaScript Intl APIs.
+Utility helpers for Persian apps, including:
+
+- Persian date formatting
+- Persian number and currency formatting
+- Digit conversion (English <-> Persian)
+- Iran mobile phone normalization
+
+Install:
 
 ```bash
 pnpm add @better-fa/utils
 ```
 
-## 🛠 Development
+More details and examples: [packages/utils/README.md](./packages/utils/README.md)
 
-This monorepo uses:
+## Monorepo Setup
 
-- **[pnpm](https://pnpm.io)** for package management
-- **[Turborepo](https://turbo.build/repo)** for efficient builds
-- **TypeScript** for type safety
+This repository uses:
 
-### Setup
+- [pnpm](https://pnpm.io) for package management
+- [Turborepo](https://turbo.build/repo) for build orchestration
+- TypeScript for type safety
+
+Install dependencies:
 
 ```bash
 pnpm install
 ```
 
-### Build all packages
+Build all packages:
 
 ```bash
 pnpm build
 ```
 
-### Build specific package
+Build a single package:
 
 ```bash
 pnpm --filter @better-fa/utils build
 ```
 
-## 📖 Publishing
+## Release & Governance
 
-See [RELEASING.md](./RELEASING.md) for detailed instructions on publishing packages to npm.
+- Publishing guide: [RELEASING.md](./RELEASING.md)
+- Contribution guide: [CONTRIBUTING.md](./CONTRIBUTING.md)
+- Code of conduct: [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)
+- Security policy: [SECURITY.md](./SECURITY.md)
 
-## 🤝 Open-source process
-
-- [CONTRIBUTING.md](./CONTRIBUTING.md)
-- [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)
-- [SECURITY.md](./SECURITY.md)
-- [RELEASING.md](./RELEASING.md)
-
-## 📄 License
+## License
 
 MIT © [Hamidreza](https://github.com/hamidrezakz)
