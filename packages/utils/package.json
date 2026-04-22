@@ -1,0 +1,44 @@
+{
+  "name": "@better-fa/utils",
+  "version": "1.0.0",
+  "description": "Simple Persian date and number formatting helpers using built-in Intl APIs",
+  "keywords": [
+    "persian",
+    "farsi",
+    "intl",
+    "date",
+    "number-formatting"
+  ],
+  "author": "Hamidrezakz",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hamidrezakz/better-fa.git",
+    "directory": "packages/utils"
+  },
+  "homepage": "https://github.com/hamidrezakz/better-fa/tree/main/packages/utils",
+  "bugs": {
+    "url": "https://github.com/hamidrezakz/better-fa/issues"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup --config tsup.config.ts && tsc --emitDeclarationOnly",
+    "check-types": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "tsup": "^8.5.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
