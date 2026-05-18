@@ -32,6 +32,18 @@ const NON_LATIN_DIGIT_REGEX = new RegExp(
   "g",
 );
 
+/**
+ * Converts Persian and Arabic digits to English digits.
+ * @param value String or number containing digits
+ * @returns Value with English digits
+ * @example
+ * // Persian digits
+ * toEnglishDigits('۱۲۳۴') // "1234"
+ * // Arabic-Indic digits
+ * toEnglishDigits('١٢٣٤') // "1234"
+ * // Mixed input
+ * toEnglishDigits('۱۲3۴') // "1234"
+ */
 export function toEnglishDigits(value: string | number): string {
   return String(value).replace(
     NON_LATIN_DIGIT_REGEX,
@@ -39,6 +51,15 @@ export function toEnglishDigits(value: string | number): string {
   );
 }
 
+/**
+ * Converts Latin digits to Persian digits.
+ * @param value String or number containing digits
+ * @returns Value with Persian digits
+ * @example
+ * toPersianDigits('1234') // "۱۲۳۴"
+ * toPersianDigits(5678) // "۵۶۷۸"
+ * toPersianDigits('test 123') // "test ۱۲۳"
+ */
 export function toPersianDigits(value: string | number): string {
   return String(value).replace(
     LATIN_DIGIT_REGEX,

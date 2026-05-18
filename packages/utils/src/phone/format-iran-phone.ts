@@ -22,6 +22,23 @@ function normalizeIranMobileCore(value: string | number): string {
   return mobile;
 }
 
+/**
+ * Formats an Iranian mobile phone number to standard UI or DB format with desired digits.
+ * @param value Mobile phone number (string or number)
+ * @param options Output format options (target, digits)
+ * @returns Formatted phone number string
+ * @example
+ * // UI format, English digits (default)
+ * formatIranPhone('09121234567') // "09121234567"
+ * // DB format (international)
+ * formatIranPhone('09121234567', { target: 'db' }) // "+989121234567"
+ * // UI format, Persian digits
+ * formatIranPhone('09121234567', { digits: 'fa' }) // "۰۹۱۲۱۲۳۴۵۶۷"
+ * // Accepts numbers as input
+ * formatIranPhone(9121234567) // "09121234567"
+ * // Throws on invalid input
+ * // formatIranPhone('12345') // Error: Invalid Iran mobile phone number
+ */
 export function formatIranPhone(
   value: string | number,
   options: FormatIranPhoneOptions = {},
