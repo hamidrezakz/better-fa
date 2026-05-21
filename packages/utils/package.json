@@ -1,6 +1,6 @@
 {
   "name": "@better-fa/utils",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Simple Persian date and number formatting helpers using built-in Intl APIs",
   "keywords": [
     "persian",
