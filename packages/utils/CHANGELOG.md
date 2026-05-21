@@ -1,5 +1,14 @@
 # @better-fa/utils
 
+## Unreleased
+
+### Breaking Changes
+
+- Rename `toEnglishDigits` → `toLatinDigits`.
+- Rename `formatIranPhone` → `formatIranMobile`; options `target: "ui" | "db"` → `format: "national" | "e164"`; `digits: "fa" | "en"` → `digits: "persian" | "latin"`. Removed deprecated `uiDigits`.
+- Invalid date/mobile errors now throw `RangeError` instead of `Error`.
+- Export `FA_LOCALE` constant; `formatFaNumber` accepts optional `Intl.NumberFormatOptions`.
+
 ## 0.3.3
 
 ### Patch Changes

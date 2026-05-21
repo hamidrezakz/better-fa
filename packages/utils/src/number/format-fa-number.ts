@@ -1,11 +1,16 @@
+import { FA_LOCALE } from "../constants";
+
 /**
- * Formats a number as a Persian (fa-IR) locale string.
- * @param value Numeric value
- * @returns Formatted Persian number string
+ * Formats a number using the Persian (`fa-IR`) locale.
+ *
  * @example
- * formatFaNumber(123456) // "۱۲۳٬۴۵۶"
- * formatFaNumber(1234.56) // "۱٬۲۳۴٫۵۶"
+ * formatFaNumber(123456); // "۱۲۳٬۴۵۶"
+ * formatFaNumber(1234.56); // "۱٬۲۳۴٫۵۶"
+ * formatFaNumber(0.5, { style: "percent" }); // "٪۵۰"
  */
-export function formatFaNumber(value: number): string {
-  return new Intl.NumberFormat("fa-IR").format(value);
+export function formatFaNumber(
+  value: number,
+  options?: Intl.NumberFormatOptions,
+): string {
+  return new Intl.NumberFormat(FA_LOCALE, options).format(value);
 }

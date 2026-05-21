@@ -21,8 +21,8 @@ Utility helpers for Persian apps, including:
 
 - Persian date formatting
 - Persian number and currency formatting
-- Digit conversion (English <-> Persian)
-- Iran mobile phone normalization
+- Digit conversion (Latin ↔ Persian)
+- Iran mobile normalization (national / E.164)
 
 Install:
 

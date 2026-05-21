@@ -1,13 +1,6 @@
 # @better-fa/utils
 
-A tiny helper package for Persian formatting with built-in JavaScript Intl APIs.
-
-## Features
-
-- Date formatting with Persian calendar via Intl.
-- Number and currency formatting for Persian locale.
-- Digit conversion helpers for UI and normalization.
-- Iran mobile phone normalization for UI and DB targets.
+Small Persian formatting helpers built on native `Intl` APIs. Framework-agnostic, tree-shakeable, zero runtime dependencies.
 
 ## Install
 
@@ -19,13 +12,16 @@ pnpm add @better-fa/utils
 
 ```ts
 import {
+  FA_LOCALE,
   formatFaCurrency,
   formatFaDate,
   formatFaNumber,
-  formatIranPhone,
-  toEnglishDigits,
+  formatIranMobile,
+  toLatinDigits,
   toPersianDigits,
 } from "@better-fa/utils";
+
+FA_LOCALE; // "fa-IR"
 
 formatFaDate(new Date());
 // e.g. ۱۴۰۴/۱۲/۸
@@ -38,10 +34,10 @@ formatFaDate("2026-02-27", {
 });
 // e.g. جمعه ۸ اسفند ۱۴۰۴
 
-formatFaNumber(1234567);
+formatFaNumber(1_234_567);
 // ۱٬۲۳۴٬۵۶۷
 
-formatFaCurrency(1250000);
+formatFaCurrency(1_250_000);
 // ‎ریال ۱٬۲۵۰٬۰۰۰
 
 formatFaCurrency(49.99, "USD");
@@ -50,34 +46,43 @@ formatFaCurrency(49.99, "USD");
 toPersianDigits("Order #2026");
 // Order #۲۰۲۶
 
-toEnglishDigits("Order #۲۰۲۶");
+toLatinDigits("Order #۲۰۲۶");
 // Order #2026
 
-formatIranPhone("+989305138169");
+formatIranMobile("+989305138169");
 // 09305138169
 
-formatIranPhone("+989305138169", { digits: "fa" });
+formatIranMobile("+989305138169", { digits: "persian" });
 // ۰۹۳۰۵۱۳۸۱۶۹
 
-formatIranPhone("09305138169", { target: "db" });
+formatIranMobile("09305138169", { format: "e164" });
 // +989305138169
 ```
 
 ## API
 
-- formatFaDate(value, options?)
-- formatFaNumber(value)
-- formatFaCurrency(value, currency?, options?)
-- toPersianDigits(value)
-- toEnglishDigits(value)
-- formatIranPhone(value, options?)
+| Function                                       | Description                                     |
+| ---------------------------------------------- | ----------------------------------------------- |
+| `formatFaDate(value, options?)`                | `Intl.DateTimeFormat` for `fa-IR`               |
+| `formatFaNumber(value, options?)`              | `Intl.NumberFormat` for `fa-IR`                 |
+| `formatFaCurrency(value, currency?, options?)` | Currency formatting for `fa-IR`                 |
+| `toLatinDigits(value)`                         | Persian / Arabic-Indic → Latin `0–9`            |
+| `toPersianDigits(value)`                       | Latin `0–9` → Persian `۰–۹`                     |
+| `formatIranMobile(value, options?)`            | Iranian mobile: national `09…` or E.164 `+989…` |
 
-## Internal Structure
+### `formatIranMobile` options
 
-Source is organized by domain for long-term maintainability:
+| Option   | Values                   | Default      |
+| -------- | ------------------------ | ------------ |
+| `format` | `"national"` \| `"e164"` | `"national"` |
+| `digits` | `"latin"` \| `"persian"` | `"latin"`    |
 
-- src/date
-- src/digits
-- src/number
-- src/phone
-- src/types
+Invalid dates and mobile numbers throw `RangeError`.
+
+## Source layout
+
+- `src/date` — dates
+- `src/digits` — digit scripts
+- `src/number` — numbers and currency
+- `src/phone` — Iran mobile formatting
+- `src/types` — shared option types

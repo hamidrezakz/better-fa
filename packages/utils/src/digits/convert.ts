@@ -10,55 +10,40 @@ const LATIN_DIGITS = createDigitTable("en-u-nu-latn");
 const PERSIAN_DIGITS = createDigitTable("fa-IR-u-nu-arabext");
 const ARABIC_INDIC_DIGITS = createDigitTable("ar-u-nu-arab");
 
-const PERSIAN_TO_LATIN_DIGIT_PAIRS: Array<[string, string]> =
-  PERSIAN_DIGITS.map((digit, index) => [
+const NON_LATIN_TO_LATIN = new Map<string, string>(
+  [...PERSIAN_DIGITS, ...ARABIC_INDIC_DIGITS].map((digit, index) => [
     digit,
     LATIN_DIGITS[index] ?? String(index),
-  ]);
-
-const ARABIC_INDIC_TO_LATIN_DIGIT_PAIRS: Array<[string, string]> =
-  ARABIC_INDIC_DIGITS.map((digit, index) => [
-    digit,
-    LATIN_DIGITS[index] ?? String(index),
-  ]);
-
-const NON_LATIN_TO_LATIN_DIGIT = new Map<string, string>([
-  ...PERSIAN_TO_LATIN_DIGIT_PAIRS,
-  ...ARABIC_INDIC_TO_LATIN_DIGIT_PAIRS,
-]);
+  ]),
+);
 
 const NON_LATIN_DIGIT_REGEX = new RegExp(
-  `[${Array.from(NON_LATIN_TO_LATIN_DIGIT.keys()).join("")}]`,
-  "g",
+  `[${[...NON_LATIN_TO_LATIN.keys()].join("")}]`,
+  "gu",
 );
 
 /**
- * Converts Persian and Arabic digits to English digits.
- * @param value String or number containing digits
- * @returns Value with English digits
+ * Converts Persian and Arabic-Indic digits to Latin digits (0–9).
+ *
  * @example
- * // Persian digits
- * toEnglishDigits('۱۲۳۴') // "1234"
- * // Arabic-Indic digits
- * toEnglishDigits('١٢٣٤') // "1234"
- * // Mixed input
- * toEnglishDigits('۱۲3۴') // "1234"
+ * toLatinDigits("۱۲۳۴"); // "1234"
+ * toLatinDigits("١٢٣٤"); // "1234"
+ * toLatinDigits("۱۲3۴"); // "1234"
  */
-export function toEnglishDigits(value: string | number): string {
+export function toLatinDigits(value: string | number): string {
   return String(value).replace(
     NON_LATIN_DIGIT_REGEX,
-    (digit) => NON_LATIN_TO_LATIN_DIGIT.get(digit) ?? digit,
+    (digit) => NON_LATIN_TO_LATIN.get(digit) ?? digit,
   );
 }
 
 /**
- * Converts Latin digits to Persian digits.
- * @param value String or number containing digits
- * @returns Value with Persian digits
+ * Converts Latin digits (0–9) to Persian digits (۰–۹).
+ *
  * @example
- * toPersianDigits('1234') // "۱۲۳۴"
- * toPersianDigits(5678) // "۵۶۷۸"
- * toPersianDigits('test 123') // "test ۱۲۳"
+ * toPersianDigits("1234"); // "۱۲۳۴"
+ * toPersianDigits(5678); // "۵۶۷۸"
+ * toPersianDigits("test 123"); // "test ۱۲۳"
  */
 export function toPersianDigits(value: string | number): string {
   return String(value).replace(

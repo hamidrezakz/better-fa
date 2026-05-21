@@ -1,11 +1,11 @@
+export { FA_LOCALE } from "./constants";
 export { formatFaDate } from "./date/format-fa-date";
-export { toEnglishDigits, toPersianDigits } from "./digits/convert";
+export { toLatinDigits, toPersianDigits } from "./digits/convert";
 export { formatFaCurrency } from "./number/format-fa-currency";
 export { formatFaNumber } from "./number/format-fa-number";
-export { formatIranPhone } from "./phone/format-iran-phone";
+export { formatIranMobile } from "./phone/format-iran-mobile";
 export type {
-  FormatIranPhoneOptions,
-  IranPhoneDigits,
-  IranPhoneTarget,
-  UiDigits,
-} from "./types/phone";
+  FormatIranMobileOptions,
+  IranMobileFormat,
+  MobileDigitScript,
+} from "./types/mobile";
